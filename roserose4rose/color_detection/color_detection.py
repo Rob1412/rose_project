@@ -30,8 +30,9 @@ def get_limits(color):
 
 def find_pink_imported_img(img):
     """
-    find_pink takes the path to image as input and return True if pink was detected
-    example: find_pink("raw_data/flowers/rose/9185768268_1e48d4d119_c.jpg")
+    find_pink takes an image as input and returns "0" for no pink found,
+    "1" for some pink found, and "2" for enough pink found
+    example: find_pink(image)
     """
     #set default return value
     pink_value = 0
@@ -43,8 +44,6 @@ def find_pink_imported_img(img):
     #Get limits of pink
     lowerHue, upperHue = get_limits(pink)
 
-    #Load the image
-    #img = cv2.imread(image_path)
     #Convert image from BGR into HSV color space
     hsvImage = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
