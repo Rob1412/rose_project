@@ -34,11 +34,12 @@ def find_pink_imported_img(img):
     example: find_pink("raw_data/flowers/rose/9185768268_1e48d4d119_c.jpg")
     """
     #set default return value
-    found_pink = False
+    pink_value = 0
 
     #Define pink in BGR color space
     #pink = [220, 140, 255]
     pink = [149, 97, 255]
+
     #Get limits of pink
     lowerHue, upperHue = get_limits(pink)
 
@@ -58,7 +59,11 @@ def find_pink_imported_img(img):
 
     #check if pink was detected
     if counts.shape[0] == 2:
+        #enough pink
         if counts[1] / counts[0] > pink_threshold:
-            found_pink = True
+            pink_value = 2
+        else:
+            #some pink
+            pink_value = 1
 
-    return found_pink
+    return pink_value
