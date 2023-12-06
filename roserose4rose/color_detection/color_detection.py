@@ -65,3 +65,39 @@ def find_pink(image_path):
             found_pink = True
 
     return found_pink
+
+
+def find_pink_imported_img(img):
+    """
+    find_pink takes the path to image as input and return True if pink was detected
+    example: find_pink("raw_data/flowers/rose/9185768268_1e48d4d119_c.jpg")
+    """
+    #set default return value
+    found_pink = False
+
+    #Define pink in BGR color space
+    pink = [220, 140, 255]
+
+    #Get limits of pink
+    lowerHue, upperHue = get_limits(pink)
+
+    #Load the image
+
+    #Convert image from BGR into HSV color space
+    hsvImage = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+    #Define mask
+    mask = cv2.inRange(hsvImage, lowerHue, upperHue)
+
+    #Identify how much pink is in the image
+    unique, counts = np.unique(mask, return_counts=True)
+
+    #threshold for amount of pink needed in the image
+    pink_threshold = 0.005
+
+    #check if pink was detected
+    if counts.shape[0] == 2:
+        if counts[1] / counts[0] > pink_threshold:
+            found_pink = True
+
+    return found_pink
