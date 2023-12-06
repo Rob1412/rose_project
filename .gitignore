@@ -1,6 +1,3 @@
-notebooks/
-data_raw/
-
 # Standard python ignores
 *.egg-info
 .coverage
