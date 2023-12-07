@@ -27,7 +27,7 @@ flower_labels = {
 
 def predict(contents):
 
-    model = load_model("./models/mobilenet_tl_model.h5")    # CHECK DIRECTORY!
+    model = load_model("roserose4rose/model/mobilenet_tl_model.h5")    # CHECK DIRECTORY!
 
     img = Image.open(BytesIO(contents))
 
