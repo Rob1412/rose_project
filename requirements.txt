@@ -6,13 +6,9 @@ wheel>=0.29
 
 # data science
 numpy
-keras==2.10.0
-Keras-Preprocessing==1.1.2
-tensorflow==2.10.0
-tensorflow-datasets==4.6.0
-tensorflow-estimator==2.10.0
-tensorflow-io-gcs-filesystem==0.27.0
-tensorflow-metadata==1.10.0
+tensorflow==2.14.0
+typing-extensions==4.5.0
+protobuf==3.20.3
 cv-3
 # api
 fastapi
