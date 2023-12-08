@@ -1,0 +1,13 @@
+numpy
+pandas
+opencv-python
+cv-3
+Pillow
+
+google-cloud-storage
+
+fastapi
+uvicorn
+
+python-dotenv
+python-multipart

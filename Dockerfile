@@ -1,18 +1,15 @@
-FROM python:3.8.12-buster
+FROM tensorflow/tensorflow
 
-WORKDIR /app
+WORKDIR /prod
 
-# libraries required by OpenCV
-#RUN apt-get update
-#RUN apt-get install \
-#  'ffmpeg'\
-#  'libsm6'\
-#  'libxext6'  -y
+RUN apt-get update && apt-get install -y python3-opencv
 
-COPY requirements.txt .
+COPY requirements_prod.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY roserose4rose roserose4rose
+COPY setup.py setup.py
+RUN pip install .
 
 # You can add --port $PORT if you need to set PORT as a specific env variable
-CMD uvicorn fast_api.api:app --host 0.0.0.0 --port $PORT
+CMD uvicorn roserose4rose.api.fast:app --host 0.0.0.0 --port $PORT

@@ -36,8 +36,7 @@ def predict(contents):
     #     pickle.dump(contents, file)
 
 
-    #model = load_model("roserose4rose/model/mobilenet_tl_model.h5")    # CHECK DIRECTORY!
-    model = load_model('/home/michael/code/Rob1412/rose_project/roserose4rose/model/mobilenet_tl_model.h5')
+    model = load_model("roserose4rose/model/mobilenet_tl_model.h5")    # CHECK DIRECTORY!
     img = Image.open(BytesIO(contents))
     img = img.resize((128,128)) # resize image
     X_new = img_to_array(img).reshape((-1,128,128,3)) # convert image to np array
