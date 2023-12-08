@@ -9,8 +9,14 @@ numpy
 tensorflow==2.14.0
 typing-extensions==4.5.0
 protobuf==3.20.3
-cv-3
+
 # api
 fastapi
 uvicorn
 python-multipart
+
+# computer vision
+easy-pil
+cv-3
+opencv-python
+pillow
