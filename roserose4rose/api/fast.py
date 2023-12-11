@@ -1,14 +1,10 @@
-# $WIPE_BEGIN
-
-# $WIPE_END
-
-
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import cv2
 from roserose4rose.color_detection.color_detection import find_pink_imported_img
 from roserose4rose.flower_classificator.flower_classifier import predict
+
 app = FastAPI()
 
 # Allowing all middleware is optional, but good practice for dev purposes
@@ -19,9 +15,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
-
-# http://127.0.0.1:8000/predict?pickup_datetime=2012-10-06 12:10:20&pickup_longitude=40.7614327&pickup_latitude=-73.9798156&dropoff_longitude=40.6513111&dropoff_latitude=-73.8803331&passenger_count=2
-
 
 @app.post('/upload_image')
 async def receive_image(img: UploadFile=File(...)):
@@ -45,6 +38,4 @@ async def receive_image(img: UploadFile=File(...)):
 
 @app.get("/")
 def root():
-    # $CHA_BEGIN
     return dict(greeting="Hello")
-    # $CHA_END
