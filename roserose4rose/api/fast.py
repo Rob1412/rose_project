@@ -29,7 +29,7 @@ async def receive_image(img: UploadFile=File(...)):
     colour_response=find_pink_imported_img(cv2_img)
     returnval={'pred_class':pred_class,
                'pred_prob':pred_prob,
-               'is_rose':colour_response}
+               'how_much_pink':colour_response}
 
     ### Encoding and responding with the image
     #im = cv2.imencode('.png', annotated_img)[1] # extension depends on which format is sent from Streamlit
