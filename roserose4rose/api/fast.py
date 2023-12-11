@@ -30,18 +30,13 @@ async def receive_image(img: UploadFile=File(...)):
     class_response=predict(contents)
     pred_class=class_response[0]
     pred_prob=round(class_response[1]*100)
-    returnval=f'This is a {pred_class} with probability {pred_prob}%'
-    if pred_class=="rose":
-        nparr = np.fromstring(contents, np.uint8)
-        cv2_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # type(cv2_img) => numpy.ndarray
-        colour_response=find_pink_imported_img(cv2_img)
 
-        if not colour_response:
-            returnval=f'This is a rose with probability {pred_prob}% but not in colour pink'
-        else:
-            returnval=f'This is a rose with probability {pred_prob}% and it is pink'
-
-
+    nparr = np.fromstring(contents, np.uint8)
+    cv2_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # type(cv2_img) => numpy.ndarray
+    colour_response=find_pink_imported_img(cv2_img)
+    returnval={'pred_class':pred_class,
+               'pred_prob':pred_prob,
+               'is_rose':colour_response}
 
     ### Encoding and responding with the image
     #im = cv2.imencode('.png', annotated_img)[1] # extension depends on which format is sent from Streamlit
