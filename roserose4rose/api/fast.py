@@ -1,11 +1,16 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+
 import numpy as np
 import cv2
+
+from tensorflow.keras.models import load_model
+
 from roserose4rose.color_detection.color_detection import find_pink_imported_img
 from roserose4rose.flower_classificator.flower_classifier import predict
 
 app = FastAPI()
+app.state.model = load_model("roserose4rose/model/mobilenet_tl_model.h5")
 
 # Allowing all middleware is optional, but good practice for dev purposes
 app.add_middleware(
@@ -20,7 +25,7 @@ app.add_middleware(
 async def receive_image(img: UploadFile=File(...)):
     ### Receiving and decoding the image
     contents = await img.read()
-    class_response=predict(contents)
+    class_response=predict(contents,app.state.model)
     pred_class=class_response[0]
     pred_prob=round(class_response[1]*100)
 

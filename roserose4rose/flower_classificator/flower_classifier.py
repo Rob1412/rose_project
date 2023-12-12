@@ -1,6 +1,5 @@
 import numpy as np
 
-from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
 from PIL import Image
@@ -25,7 +24,7 @@ flower_labels = {
     15: 'water_lily'
 }
 
-def predict(contents):
+def predict(contents,model):
 
     # # Use dumps() to make it serialized
 
@@ -35,8 +34,6 @@ def predict(contents):
     #     # A new file will be created
     #     pickle.dump(contents, file)
 
-
-    model = load_model("roserose4rose/model/mobilenet_tl_model.h5")    # CHECK DIRECTORY!
     img = Image.open(BytesIO(contents))
     img = img.resize((128,128)) # resize image
     X_new = img_to_array(img).reshape((-1,128,128,3)) # convert image to np array
