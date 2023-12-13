@@ -26,7 +26,7 @@ async def receive_image(img: UploadFile=File(...)):
     ### Receiving and decoding the image
     contents = await img.read()
     class_response=predict(contents,app.state.model)
-    pred_class=class_response[0]
+    pred_class=" ".join(class_response[0].split("_"))
     pred_prob=round(class_response[1]*100)
 
     nparr = np.fromstring(contents, np.uint8)
