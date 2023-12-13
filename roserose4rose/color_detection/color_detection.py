@@ -38,8 +38,8 @@ def find_pink_imported_img(img):
     pink_value = 0
 
     #Define pink in BGR color space
-    #pink = [220, 140, 255]
-    pink = [149, 97, 255]
+    pink = [220, 140, 255]
+    #pink = [149, 97, 255]
 
     #Get limits of pink
     lowerHue, upperHue = get_limits(pink)
