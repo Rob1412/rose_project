@@ -54,7 +54,7 @@ def find_pink_imported_img(img):
     unique, counts = np.unique(mask, return_counts=True)
 
     #threshold for amount of pink needed in the image
-    pink_threshold = 0.005
+    pink_threshold = 0.001
 
     #check if pink was detected
     if counts.shape[0] == 2:
